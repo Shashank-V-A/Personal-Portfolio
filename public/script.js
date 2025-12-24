@@ -708,7 +708,14 @@ updateScrollIndicators();
 // Project Categories and Data
 const projectsData = {
     web3: [
-        // Add your Web3 projects here
+        {
+            title: "Ciphers",
+            description: "Decentralized system for issuing, storing, and verifying personal (especially academic) credentials using modern blockchain and cryptographic standards. It implements privacy-preserving verifiable credentials with decentralized identity (DIDs), blockchain anchoring, and decentralized storage for credential files.",
+            image: "https://i.ibb.co/WWrnRHSG/1-8-Npcvvhh-Kg-D4z0f-Pzda-S9g.png",
+            technologies: ["Web3", "Next.js", "Smart Contracts"],
+            demoLink: "https://ciphers-2-0-kjxi.vercel.app/",
+            githubLink: "https://github.com/karthik1codes/dsatm.git"
+        }
     ],
     web2: [
         {
@@ -716,8 +723,8 @@ const projectsData = {
             description: "Full-stack movie recommendation system built with Next.js, NestJS, and PostgreSQL. Features AI-powered recommendations, user profiles, watch lists, and legal streaming links.",
             image: "https://i.ibb.co/VYwmQt5z/Gemini-Generated-Image-q7uyfiq7uyfiq7uy.png",
             technologies: ["Next.js", "NestJS", "PostgreSQL", "TypeScript", "Prisma", "Tailwind CSS"],
-            demoLink: "https://movie-recommender-katqrh8ls-shashank-vas-projects.vercel.app",
-            githubLink: "https://github.com/Shashank-V-A/movie-recommender"
+            demoLink: "https://cine-findr.vercel.app/",
+            githubLink: "https://github.com/Shashank-V-A/CineFindr"
         },
         {
             title: "Online-Quiz",
@@ -732,7 +739,7 @@ const projectsData = {
             description: "Crypto expense tracker web app. Track portfolios, categorize transactions, and visualize spend/performance.",
             image: "https://i.ibb.co/5gYQJzsR/Gemini-Generated-Image-fjgti0fjgti0fjgt.png",
             technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-            demoLink: "https://vault-2pkv06eqb-shashank-vas-projects.vercel.app",
+            demoLink: "https://vault-iq-phi.vercel.app/",
             githubLink: "https://github.com/Shashank-V-A/VaultIQ.git"
         }
     ],
@@ -743,7 +750,8 @@ const projectsData = {
             image: "https://i.ibb.co/xtr33QXF/Minesweeper.png",
             tags: ["React", "TypeScript", "Game Logic"],
             projectLink: "/minesweeper/index.html",
-            demoLink: "/minesweeper/index.html"
+            demoLink: "/minesweeper/index.html",
+            githubLink: "https://github.com/Shashank-V-A/Minesweeper.git"
         }
     ]
 };
@@ -820,11 +828,16 @@ function displayProjects(category) {
         projectCard.style.animation = `fadeInUp 0.6s ease ${index * 0.1}s forwards`;
         projectCard.style.opacity = '0';
         
+        const codeButton = project.githubLink 
+            ? `<a href="${project.githubLink}" class="project-link project-link-secondary" target="_blank">View Code</a>`
+            : '';
+        
         projectCard.innerHTML = `
             <div class="project-image" style="background: #2d3748;">
                 <img src="${project.image}" alt="${project.title}" class="project-img">
                 <div class="project-overlay">
                     <a href="${project.demoLink}" class="project-link" target="_blank">Live Demo</a>
+                    ${codeButton}
                 </div>
             </div>
             <div class="project-content">
@@ -861,5 +874,4 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.skill-card, .stat, .contact-item').forEach(el => {
     observer.observe(el);
 });
-
 
