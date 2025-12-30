@@ -44,6 +44,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
+            
+            // Special handling for Extra Mile section - ensure tabs are visible
+            if (this.getAttribute('href') === '#extra') {
+                setTimeout(() => {
+                    const extraSection = document.getElementById('extra');
+                    const extraTabs = document.querySelector('.extra-mile-tabs');
+                    if (extraSection && extraTabs) {
+                        // Scroll tabs into view if needed
+                        extraTabs.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest'
+                        });
+                    }
+                }, 500);
+            }
         }
     });
 });
@@ -66,7 +81,7 @@ let recognition = null;
 // Load voices when they're ready
 speechSynthesis.onvoiceschanged = () => {
     const voices = speechSynthesis.getVoices();
-    console.log('Available voices:', voices.map(v => v.name));
+    // Voice loading handled silently
 };
 
 // Initialize Speech Recognition if available
@@ -293,11 +308,11 @@ if (recognition) {
     };
     
     recognition.onspeechstart = () => {
-        console.log('Speech detected...');
+        // Speech detection handled silently
     };
     
     recognition.onspeechend = () => {
-        console.log('Speech ended, processing...');
+        // Speech processing handled silently
     };
 } else {
     // If speech recognition is not supported, show a message when clicking
@@ -621,7 +636,7 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.target
         );
         
-        console.log('Email sent successfully:', result);
+        // Email sent successfully
         
         // Show success message
         alert('✅ Message sent successfully! Thank you for reaching out. I will get back to you soon!');
@@ -710,7 +725,7 @@ const projectsData = {
     web3: [
         {
             title: "Ciphers",
-            description: "Decentralized system for issuing, storing, and verifying personal (especially academic) credentials using modern blockchain and cryptographic standards. It implements privacy-preserving verifiable credentials with decentralized identity (DIDs), blockchain anchoring, and decentralized storage for credential files.",
+            description: "Decentralized Academic Credential System: A privacy-preserving Verifiable Credential (VC) system for academic credentials using Decentralized Identifiers (DIDs), blockchain anchoring, and selective disclosure.",
             image: "https://i.ibb.co/WWrnRHSG/1-8-Npcvvhh-Kg-D4z0f-Pzda-S9g.png",
             technologies: ["Web3", "Next.js", "Smart Contracts"],
             demoLink: "https://ciphers-2-0-kjxi.vercel.app/",
@@ -749,8 +764,7 @@ const projectsData = {
             description: "Classic Minesweeper game built with React and TypeScript. Features multiple difficulty levels, timer, flag system, and smooth gameplay.",
             image: "https://i.ibb.co/xtr33QXF/Minesweeper.png",
             tags: ["React", "TypeScript", "Game Logic"],
-            projectLink: "/minesweeper/index.html",
-            demoLink: "/minesweeper/index.html",
+            demoLink: "https://minesweeper-va05.vercel.app/",
             githubLink: "https://github.com/Shashank-V-A/Minesweeper.git"
         }
     ]
@@ -798,12 +812,9 @@ projectTabs.forEach(tab => {
 });
 
 function displayProjects(category) {
-    console.log('Displaying projects for category:', category);
     const projects = projectsData[category];
-    console.log('Projects found:', projects);
     
     if (!projects || projects.length === 0) {
-        console.log('No projects found, showing empty state');
         // Show empty state
         projectsGrid.innerHTML = `
             <div class="empty-state">
@@ -818,11 +829,8 @@ function displayProjects(category) {
     // Clear grid
     projectsGrid.innerHTML = '';
     
-    console.log('Rendering', projects.length, 'projects');
-    
     // Add projects
     projects.forEach((project, index) => {
-        console.log('Rendering project:', project.title);
         const projectCard = document.createElement('div');
         projectCard.className = 'project-card';
         projectCard.style.animation = `fadeInUp 0.6s ease ${index * 0.1}s forwards`;
@@ -874,4 +882,119 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.skill-card, .stat, .contact-item').forEach(el => {
     observer.observe(el);
 });
+
+// Extra Mile Tabs Functionality
+(function() {
+    function initExtraMileTabs() {
+        const extraTabs = document.querySelectorAll('.extra-tab');
+        const extraPanels = document.querySelectorAll('.extra-category[role="tabpanel"]');
+        const tabWrapper = document.querySelector('.extra-tab-wrapper');
+        const slider = document.querySelector('.extra-tab-slider');
+        
+        if (!extraTabs.length || !tabWrapper || !slider) {
+            console.warn('Extra Mile tabs elements not found');
+            return;
+        }
+        
+        // Initialize slider width and position
+        function updateSliderPosition() {
+            const activeTab = document.querySelector('.extra-tab.active');
+            if (activeTab && slider) {
+                const tabWidth = activeTab.offsetWidth;
+                const tabLeft = activeTab.offsetLeft;
+                
+                slider.style.width = tabWidth + 'px';
+                slider.style.transform = `translateX(${tabLeft}px)`;
+            }
+        }
+        
+        function switchTab(targetTab) {
+            const category = targetTab.getAttribute('data-category');
+            
+            // Update active tab
+            extraTabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.setAttribute('aria-selected', 'false');
+            });
+            targetTab.classList.add('active');
+            targetTab.setAttribute('aria-selected', 'true');
+            
+            // Update slider position
+            setTimeout(() => {
+                updateSliderPosition();
+            }, 10);
+            
+            // Update wrapper data attribute for CSS fallback
+            tabWrapper.setAttribute('data-active', category);
+            
+            // Show/hide panels with fade animation
+            extraPanels.forEach(panel => {
+                const panelCategory = panel.id.replace('-panel', '');
+                if (panelCategory === category) {
+                    panel.style.display = 'block';
+                    // Force reflow for animation
+                    panel.offsetHeight;
+                    panel.style.animation = 'fadeInUp 0.5s ease forwards';
+                } else {
+                    panel.style.animation = 'fadeOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        panel.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+        
+        // Add click handlers
+        extraTabs.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchTab(this);
+            });
+            
+            // Keyboard navigation
+            tab.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    switchTab(this);
+                }
+            });
+        });
+        
+        // Initialize: ensure competitions panel is visible
+        const competitionsPanel = document.getElementById('competitions-panel');
+        const activitiesPanel = document.getElementById('activities-panel');
+        if (competitionsPanel) {
+            competitionsPanel.style.display = 'block';
+        }
+        if (activitiesPanel) {
+            activitiesPanel.style.display = 'none';
+        }
+        
+        // Initialize slider position
+        setTimeout(() => {
+            updateSliderPosition();
+        }, 100);
+        
+        // Update slider on resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                updateSliderPosition();
+            }, 250);
+        });
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initExtraMileTabs);
+    } else {
+        initExtraMileTabs();
+    }
+    
+    // Also reinitialize if elements are added dynamically
+    window.addEventListener('load', () => {
+        setTimeout(initExtraMileTabs, 100);
+    });
+})();
 
