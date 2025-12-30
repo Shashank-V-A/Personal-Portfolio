@@ -73,7 +73,7 @@
         </div>
         <div class="hero-image">
             <div class="profile-circle">
-                <img src="https://i.ibb.co/qLJ5vwDh/Profile-Pic.jpg" alt="Shashank VA" class="profile-img">
+                <img src="https://i.ibb.co/qLJ5vwDh/Profile-Pic.jpg" alt="Shashank VA" class="profile-img" loading="eager">
             </div>
         </div>
     </section>
@@ -115,43 +115,70 @@
         <div class="container">
             <h2 class="section-title">Extra Mile</h2>
             <p class="section-subtitle">A quick look at the achievements and experiences that keep me energized outside regular academics.</p>
-            <div class="extra-grid">
-                <article class="extra-card">
-                    <div class="extra-icon">🏅</div>
-                    <h3>PIXELGENESIS Web3 Hackathon</h3>
-                    <p class="extra-subtitle">Runner Up</p>
-                    <p>Won 2nd Place for building a decentralized digital vault focused specifically for university/colleges.</p>
-                    <div class="extra-meta">
-                        <span>24 hr Sprint</span>
-                        <span>Problem Solving</span>
-                    </div>
-                    <a class="extra-link" href="https://i.ibb.co/YT030kCM/IMG-20251118-175607.jpg" target="_blank" rel="noopener noreferrer">📜 View Certificate</a>
-                </article>
-                <article class="extra-card">
-                    <div class="extra-icon">🎯</div>
-                    <h3>Event Coordinator</h3>
-                    <p class="extra-subtitle">MVJCE Vertex 13.0</p>
-                    <p>During the national level technical fest held at MVJCE I had the opportunity to be the sublead as well as the coordinator for the events held under Department of Data Science.</p>
-                    <a class="extra-link" href="https://i.ibb.co/PvCqXnzw/IMG-20251124-222406.jpg" target="_blank" rel="noopener noreferrer">📜 View Certificate</a>
-                </article>
-                <article class="extra-card">
-                    <div class="extra-icon">🏆</div>
-                    <h3>HackSpark DSATM Hackathon</h3>
-                    <p class="extra-subtitle">Winners</p>
-                    <p>Built a digitalized learning platform for kids who are specially abled.</p>
-                    <div class="extra-meta">
-                        <span>Innovation</span>
-                        <span>Social Impact</span>
-                    </div>
-                    <a class="extra-link" href="https://i.ibb.co/HTSBVQv1/IMG-20251130-103652.jpg" target="_blank" rel="noopener noreferrer" id="hackspark-certificate">📜 View Certificate</a>
-                </article>
-                <article class="extra-card">
-                    <div class="extra-icon">🏆</div>
-                    <h3>Growth Hackathon By Residency BLR</h3>
-                    <p class="extra-subtitle">Winners</p>
-                    <p>Won the World's 1st Growth Hackathon for being the best implemented start-up in the span of 24hrs</p>
-                    <a class="extra-link" href="https://i.ibb.co/fGVyJg7p/IMG-20251207-225506.jpg" target="_blank" rel="noopener noreferrer" id="growth-hackathon-certificate">📜 View Image</a>
-                </article>
+            
+            <!-- Category Toggle -->
+            <div class="extra-mile-tabs" role="tablist" aria-label="Extra Mile categories">
+                <div class="extra-tab-wrapper">
+                    <button class="extra-tab active" role="tab" aria-selected="true" aria-controls="competitions-panel" id="competitions-tab" data-category="competitions">
+                        Competitions
+                    </button>
+                    <button class="extra-tab" role="tab" aria-selected="false" aria-controls="activities-panel" id="activities-tab" data-category="activities">
+                        Activities
+                    </button>
+                    <span class="extra-tab-slider" aria-hidden="true"></span>
+                </div>
+            </div>
+            
+            <!-- Competitions Subsection -->
+            <div class="extra-category active" id="competitions-panel" role="tabpanel" aria-labelledby="competitions-tab">
+                <div class="extra-grid">
+                    <article class="extra-card">
+                        <div class="extra-icon">🏅</div>
+                        <h3>PIXELGENESIS Web3 Hackathon</h3>
+                        <p class="extra-subtitle">Runner Up</p>
+                        <p>Won 2nd Place for building a decentralized digital vault focused specifically for university/colleges.</p>
+                        <div class="extra-meta">
+                            <span>24 hr Sprint</span>
+                            <span>Problem Solving</span>
+                        </div>
+                        <a class="extra-link" href="https://i.ibb.co/YT030kCM/IMG-20251118-175607.jpg" target="_blank" rel="noopener noreferrer">📜 View Certificate</a>
+                    </article>
+                    <article class="extra-card">
+                        <div class="extra-icon">🏆</div>
+                        <h3>HackSpark DSATM Hackathon</h3>
+                        <p class="extra-subtitle">Winner</p>
+                        <p>Built a digitalized learning platform for kids who are specially abled.</p>
+                        <div class="extra-meta">
+                            <span>Innovation</span>
+                            <span>Social Impact</span>
+                        </div>
+                        <a class="extra-link" href="https://i.ibb.co/HTSBVQv1/IMG-20251130-103652.jpg" target="_blank" rel="noopener noreferrer" id="hackspark-certificate">📜 View Certificate</a>
+                    </article>
+                    <article class="extra-card">
+                        <div class="extra-icon">🏆</div>
+                        <h3>Growth Hackathon By Residency BLR</h3>
+                        <p class="extra-subtitle">Winner</p>
+                        <p>Won the World's 1st Growth Hackathon for being the best implemented start-up in the span of 24hrs</p>
+                        <div class="extra-meta">
+                            <span>Startup</span>
+                            <span>BrightWords</span>
+                        </div>
+                        <a class="extra-link" href="https://i.ibb.co/fGVyJg7p/IMG-20251207-225506.jpg" target="_blank" rel="noopener noreferrer" id="growth-hackathon-certificate">📜 View Image</a>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Activities Subsection -->
+            <div class="extra-category" id="activities-panel" role="tabpanel" aria-labelledby="activities-tab" style="display: none;">
+                <div class="extra-grid">
+                    <article class="extra-card">
+                        <div class="extra-icon">🎯</div>
+                        <h3>Event Coordinator</h3>
+                        <p class="extra-subtitle">MVJCE Vertex 13.0</p>
+                        <p>During the national level technical fest held at MVJCE I had the opportunity to be the sublead as well as the coordinator for the events held under Department of Data Science.</p>
+                        <a class="extra-link" href="https://i.ibb.co/PvCqXnzw/IMG-20251124-222406.jpg" target="_blank" rel="noopener noreferrer">📜 View Certificate</a>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
@@ -301,11 +328,11 @@
                     </div>
 
                     <div class="resume-actions">
-                        <a href="Resume 2025.pdf" class="resume-btn primary-btn" target="_blank">
+                        <a href="Resume Final(2025).pdf" class="resume-btn primary-btn" target="_blank">
                             <span class="btn-icon">👁️</span>
                             <span>View Resume</span>
                         </a>
-                        <a href="Resume 2025.pdf" class="resume-btn secondary-btn" download="Shashank_VA_Resume_2025.pdf">
+                        <a href="Resume Final(2025).pdf" class="resume-btn secondary-btn" download="Shashank_VA_Resume_Final_2025.pdf">
                             <span class="btn-icon">⬇️</span>
                             <span>Download PDF</span>
                         </a>
@@ -400,7 +427,7 @@
             <div class="chat-header">
                 <div class="chat-header-info">
                     <div class="chat-avatar">
-                        <img src="https://i.ibb.co/qLJ5vwDh/Profile-Pic.jpg" alt="Shashank VA" class="avatar-img">
+                        <img src="https://i.ibb.co/qLJ5vwDh/Profile-Pic.jpg" alt="Shashank VA" class="avatar-img" loading="lazy">
                     </div>
                     <div class="chat-user-info">
                         <h3>Shashank's AI Assistant</h3>
