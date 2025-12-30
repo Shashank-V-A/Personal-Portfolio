@@ -471,22 +471,14 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
 
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBnrWzLDH3_AowKPf9pCbXR3GudNVtJG60",
-            authDomain: "shashankportfolio-547c0.firebaseapp.com",
-            projectId: "shashankportfolio-547c0",
-            storageBucket: "shashankportfolio-547c0.firebasestorage.app",
-            messagingSenderId: "239696157473",
-            appId: "1:239696157473:web:03958e6435aeefa34fbc60",
-            measurementId: "G-ZFGENLB0W6"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
+        // Your web app's Firebase configuration (loaded from config.js)
+        const firebaseConfig = window.__PORTFOLIO_CONFIG__?.FIREBASE_CONFIG;
         
-        console.log('Firebase Analytics initialized successfully! 🔥');
+        if (firebaseConfig) {
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+        }
     </script>
 </body>
 </html>
