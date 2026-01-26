@@ -756,6 +756,14 @@ const projectsData = {
             technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
             demoLink: "https://vault-iq-phi.vercel.app/",
             githubLink: "https://github.com/Shashank-V-A/VaultIQ.git"
+        },
+        {
+            title: "Lumina",
+            description: "A web application which converts images of JPG, WebP and PNG format to any videos of user's choice. It also extracts image's url from internet and converts it into a video.",
+            image: "https://i.ibb.co/38GwkZY/fm-new1-web.webp",
+            technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+            demoLink: "https://lumina-veo.vercel.app/",
+            githubLink: "https://github.com/Shashank-V-A/Lumina.git"
         }
     ],
     gaming: [
