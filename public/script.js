@@ -764,6 +764,14 @@ const projectsData = {
             technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
             demoLink: "https://lumina-veo.vercel.app/",
             githubLink: "https://github.com/Shashank-V-A/Lumina.git"
+        },
+        {
+            title: "Perk Pilot",
+            description: "Web application for discovering benefits of your Visa card. Uses AI based recommendation system to suggest benefits based on your spending habits.",
+            image: "https://i.ibb.co/JbxTDQv/ab22bc33-2aaf-4a50-892b-e08bf18a1e0f.png",
+            technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+            demoLink: "https://visa-card05.vercel.app/",
+            githubLink: "https://github.com/Shashank-V-A/Visa.git"
         }
     ],
     gaming: [
