@@ -60,118 +60,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Get current time (kept for potential future use - unused after chat removal)
-function getCurrentTime() {
-    const now = new Date();
-    return now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-}
+// Legacy in-page chatbot removed; Jotform AI Assistant is used instead.
+// Stub so any leftover references don't break the script.
+(function() {
+    const chatSend = document.getElementById('chatSend');
+    const chatInput = document.getElementById('chatInput');
+    if (!chatSend || !chatInput) return;
+})();
 
-// Show typing indicator
-function showTypingIndicator() {
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'chat-message bot-message typing';
-    typingDiv.id = 'typingIndicator';
-    typingDiv.innerHTML = `
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
-    `;
-    chatMessages.appendChild(typingDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-// Remove typing indicator
-function removeTypingIndicator() {
-    const typingIndicator = document.getElementById('typingIndicator');
-    if (typingIndicator) {
-        typingIndicator.remove();
-    }
-}
-
-function appendBotResponse(text) {
-    const botMessage = document.createElement('div');
-    botMessage.className = 'chat-message bot-message';
-    botMessage.innerHTML = `
-        <p>${text.replace(/\n/g, '<br>')}</p>
-        <div class="message-time">${getCurrentTime()}</div>
-    `;
-    chatMessages.appendChild(botMessage);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    speak(text);
-}
-
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-// Send message function
-async function sendMessage() {
-    const message = chatInput.value.trim();
-    
-    if (message === '') return;
-    
-    // Disable send button
-    chatSend.disabled = true;
-    
-    // Add user message
-    const userMessage = document.createElement('div');
-    userMessage.className = 'chat-message user-message';
-    userMessage.innerHTML = `
-        <p>${message}</p>
-        <div class="message-time">${getCurrentTime()}</div>
-    `;
-    chatMessages.appendChild(userMessage);
-    
-    // Clear input
-    chatInput.value = '';
-    
-    // Scroll to bottom
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    
-    // Check if this is the first user message (count user messages, excluding initial bot message)
-    const userMessages = chatMessages.querySelectorAll('.user-message');
-    const isFirstMessage = userMessages.length === 1; // Current message is the first user message
-    
-    showTypingIndicator();
-    if (chatAvatar) chatAvatar.classList.add('pulsing');
-
-    const portfolioAnswer = getPortfolioAnswer(message);
-    if (portfolioAnswer) {
-        await delay(350);
-        removeTypingIndicator();
-        if (chatAvatar) chatAvatar.classList.remove('pulsing');
-        appendBotResponse(portfolioAnswer);
-        chatSend.disabled = false;
-        return;
-    }
-    
-    try {
-        const response = await getGeminiResponse(message, isFirstMessage);
-        removeTypingIndicator();
-        if (chatAvatar) chatAvatar.classList.remove('pulsing');
-        appendBotResponse(response);
-    } catch (error) {
-        removeTypingIndicator();
-        if (chatAvatar) chatAvatar.classList.remove('pulsing');
-        
-        let fallbackText = getFallbackResponse(message);
-        if (error.message === 'QUOTA_EXCEEDED') {
-            fallbackText = `${getFallbackResponse(message)}\n\nBTW, I just hit my API quota, so this is a cached response. Try again in a minute for a fresh reply.`;
-        } else if (error.message === 'API_KEY_MISSING') {
-            fallbackText = `${getFallbackResponse(message)}\n\n(Heads up: I need a Gemini API key in config.js to answer live questions.)`;
-        }
-        
-        appendBotResponse(fallbackText);
-        
-        console.error('Error getting AI response:', error);
-    }
-    
-    // Re-enable send button
-    chatSend.disabled = false;
-}
-
-// Get response from Gemini API
-async function getGeminiResponse(userMessage, isFirstMessage = false) {
+async function getGeminiResponse_UNUSED(userMessage, isFirstMessage = false) {
     if (!GEMINI_API_URL) {
         throw new Error('API_KEY_MISSING');
     }
@@ -325,17 +222,6 @@ function getPortfolioAnswer(userMessage) {
     return null;
 }
 
-// Send message on button click
-chatSend.addEventListener('click', sendMessage);
-
-// Send message on Enter key
-chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-    }
-});
-
 // EmailJS Configuration
 const EMAILJS_PUBLIC_KEY = 'EPBADoAjrrcgUd_jc';
 const EMAILJS_SERVICE_ID = 'service_25clfzm';
@@ -444,18 +330,6 @@ if (scrollTopBtn) {
     });
 }
 
-// Quick action buttons
-if (quickActionButtons && quickActionButtons.length > 0) {
-    quickActionButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const presetMessage = button.getAttribute('data-message');
-            if (!presetMessage || chatSend.disabled) return;
-            chatInput.value = presetMessage;
-            sendMessage();
-        });
-    });
-}
-
 // Initialize on load
 updateScrollIndicators();
 
@@ -468,7 +342,7 @@ const projectsData = {
             image: "https://i.ibb.co/WWrnRHSG/1-8-Npcvvhh-Kg-D4z0f-Pzda-S9g.png",
             technologies: ["Web3", "Next.js", "Smart Contracts"],
             demoLink: "https://ciphers-2-0-kjxi.vercel.app/",
-            githubLink: "https://github.com/karthik1codes/dsatm.git"
+            githubLink: "https://github.com/karthik1codes/ciphers_2.0"
         }
     ],
     web2: [
