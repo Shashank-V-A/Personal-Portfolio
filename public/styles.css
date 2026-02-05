@@ -1698,6 +1698,10 @@ section {
     border-color: #000000;
 }
 
+.social-link:nth-child(5):hover {
+    border-color: #ffa116;
+}
+
 /* Footer */
 .footer {
     background: var(--bg-secondary);
