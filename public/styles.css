@@ -1702,6 +1702,11 @@ section {
     border-color: #ffa116;
 }
 
+.social-link .leetcode-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
 /* Footer */
 .footer {
     background: var(--bg-secondary);
