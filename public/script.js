@@ -21,13 +21,17 @@ const scrollProgress = document.getElementById('scrollProgress');
 const scrollTopBtn = document.getElementById('scrollTopBtn');
 
 navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
+    const isOpen = navMenu.classList.toggle('active');
+    navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
 });
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
     });
 });
 
@@ -60,81 +64,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Legacy in-page chatbot removed; Jotform AI Assistant is used instead.
-// Stub so any leftover references don't break the script.
-(function() {
-    const chatSend = document.getElementById('chatSend');
-    const chatInput = document.getElementById('chatInput');
-    if (!chatSend || !chatInput) return;
-})();
-
-async function getGeminiResponse_UNUSED(userMessage, isFirstMessage = false) {
-    if (!GEMINI_API_URL) {
-        throw new Error('API_KEY_MISSING');
-    }
-    let greetingInstruction = '';
-    if (isFirstMessage) {
-        greetingInstruction = '- You can start with a brief greeting like "Hi" or "Hello" if appropriate, but keep it natural and brief';
-    } else {
-        greetingInstruction = '- DO NOT use greetings like "Hey", "Hi", "Hello", "Hey there" at the start of your response. Answer directly without any greeting.';
-    }
-    
-    const prompt = `You ARE Shashank VA. You are NOT an AI assistant. You are Shashank VA himself responding to questions about yourself.
-
-User asked: "${userMessage}"
-
-${myDescription}
-
-IMPORTANT INSTRUCTIONS:
-- Respond as Shashank VA, not as an AI assistant
-- Use first person: "I am", "My college is", "I study", etc.
-- Answer personal questions directly: "I'm from MVJ College Of Engineering", "I'm in my 5th semester", "I'm male", "I love cricket and badminton"
-- When asked about projects, explain them as if you built them yourself
-- Be conversational, friendly, and natural
-- Keep responses concise but informative
-- Never mention that you are an AI or assistant
-- Act as if you are Shashank VA chatting with someone about yourself and your work
-${greetingInstruction}
-- For follow-up questions, answer directly and naturally without repetitive greetings
-
-Now respond to the user's question as Shashank VA:`;
-    
-    const requestBody = {
-        contents: [{
-            parts: [{
-                text: prompt
-            }]
-        }]
-    };
-    
-    const response = await fetch(GEMINI_API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody)
-    });
-    
-    const data = await response.json();
-    
-    if (!response.ok) {
-        const apiMessage = data?.error?.message || `API request failed with status ${response.status}`;
-        if (response.status === 429 || apiMessage.toLowerCase().includes('quota')) {
-            throw new Error('QUOTA_EXCEEDED');
-        }
-        throw new Error(apiMessage);
-    }
-    
-    // Extract the text from the response
-    if (data.candidates && data.candidates.length > 0) {
-        const generatedText = data.candidates[0].content.parts[0].text;
-        return generatedText;
-    } else {
-        throw new Error('No response generated');
-    }
-}
-
-function getFallbackResponse(userMessage) {
+function getFallbackResponse_UNUSED(userMessage) {
     const msg = userMessage.toLowerCase();
     
     if (msg.includes('college') || msg.includes('university')) {
@@ -235,6 +165,18 @@ const EMAILJS_TEMPLATE_ID = 'template_w9sc7v2';
 })();
 
 // Form submission handling with EmailJS
+const formFeedback = document.getElementById('formFeedback');
+function showFormFeedback(message, isError) {
+    if (!formFeedback) return;
+    formFeedback.textContent = message;
+    formFeedback.style.display = 'block';
+    formFeedback.className = 'form-feedback ' + (isError ? 'form-feedback-error' : 'form-feedback-success');
+    setTimeout(() => {
+        formFeedback.style.display = 'none';
+        formFeedback.textContent = '';
+    }, 6000);
+}
+
 document.getElementById('contactForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -242,38 +184,24 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
     const btnText = document.getElementById('btnText');
     const btnLoader = document.getElementById('btnLoader');
     
-    // Check if EmailJS is configured
     if (EMAILJS_PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY') {
-        alert('EmailJS is not configured yet. Please set up your EmailJS credentials.');
+        showFormFeedback('EmailJS is not configured yet. Please set up your EmailJS credentials.', true);
         return;
     }
     
-    // Disable button and show loading
     submitBtn.disabled = true;
     btnText.style.display = 'none';
     btnLoader.style.display = 'inline';
+    if (formFeedback) formFeedback.style.display = 'none';
     
     try {
-        // Send email using EmailJS
-        const result = await emailjs.sendForm(
-            EMAILJS_SERVICE_ID,
-            EMAILJS_TEMPLATE_ID,
-            e.target
-        );
-        
-        // Email sent successfully
-        
-        // Show success message
-        alert('✅ Message sent successfully! Thank you for reaching out. I will get back to you soon!');
-        
-        // Reset form
+        await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, e.target);
+        showFormFeedback('Message sent successfully! Thank you for reaching out. I will get back to you soon.', false);
         e.target.reset();
-        
     } catch (error) {
         console.error('Error sending email:', error);
-        alert('❌ Oops! Something went wrong. Please try again or email me directly at shashankva05@gmail.com');
+        showFormFeedback('Something went wrong. Please try again or email me directly at shashankva05@gmail.com', true);
     } finally {
-        // Re-enable button
         submitBtn.disabled = false;
         btnText.style.display = 'inline';
         btnLoader.style.display = 'none';
@@ -471,7 +399,7 @@ function displayProjects(category) {
         
         projectCard.innerHTML = `
             <div class="project-image" style="background: #2d3748;">
-                <img src="${project.image}" alt="${project.title}" class="project-img">
+                <img src="${project.image}" alt="${project.title}" class="project-img" loading="lazy">
                 <div class="project-overlay">
                     <a href="${project.demoLink}" class="project-link" target="_blank">Live Demo</a>
                     ${codeButton}

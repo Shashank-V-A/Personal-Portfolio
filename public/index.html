@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Shashank VA - Full Stack Developer specializing in React, Node.js, Python, and Data Science. View projects, skills, and experience.">
-    <meta name="keywords" content="Shashank VA, Full Stack Developer, React Developer, Data Science, Portfolio, Web Developer, Bangalore">
+    <meta name="description" content="Shashank VA – Web Developer & Co-Founder at BrightWords. B.E. CSE (Data Science). Portfolio: projects, internships, hackathons, resume – Bangalore.">
+    <meta name="keywords" content="Shashank VA, Full Stack Developer, React Developer, Data Science, Portfolio, Web Developer, BrightWords, Bangalore">
     <meta name="author" content="Shashank VA">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://shashankportfolio-547c0.web.app/">
-    <meta property="og:title" content="Shashank VA - Full Stack Developer Portfolio">
-    <meta property="og:description" content="Portfolio of Shashank VA - Full Stack Developer specializing in React, Node.js, Python, and Data Science.">
+    <meta property="og:title" content="Shashank VA - Web Developer & Co-Founder, BrightWords">
+    <meta property="og:description" content="Shashank VA – Web Developer & Co-Founder at BrightWords. B.E. CSE (Data Science). Projects, internships, hackathons, resume.">
     <meta property="og:image" content="https://i.ibb.co/qLJ5vwDh/Profile-Pic.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://shashankportfolio-547c0.web.app/">
-    <meta property="twitter:title" content="Shashank VA - Full Stack Developer Portfolio">
-    <meta property="twitter:description" content="Portfolio of Shashank VA - Full Stack Developer specializing in React, Node.js, Python, and Data Science.">
+    <meta property="twitter:title" content="Shashank VA - Web Developer & Co-Founder, BrightWords">
+    <meta property="twitter:description" content="Shashank VA – Web Developer & Co-Founder at BrightWords. B.E. CSE (Data Science). Projects, internships, hackathons, resume.">
     <meta property="twitter:image" content="https://i.ibb.co/qLJ5vwDh/Profile-Pic.jpg">
     
-    <title>Shashank VA - Full Stack Developer Portfolio</title>
+    <title>Shashank VA - Web Developer & Co-Founder, BrightWords</title>
+    <link rel="canonical" href="https://shashankportfolio-547c0.web.app/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://i.ibb.co" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -41,7 +43,7 @@
                     <span class="sun-icon">☀️</span>
                     <span class="moon-icon">🌙</span>
                 </button>
-                <button class="nav-toggle" id="navToggle">
+                <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -228,7 +230,9 @@
                 <div class="internship-card">
                     <div class="internship-left"></div>
                     <div class="internship-icon-wrapper">
-                        <div class="internship-icon">✈️</div>
+                        <div class="internship-icon internship-icon-logo">
+                            <img src="https://i.ibb.co/JRZprFyw/hindustan-aeronautics-limited-600.png" alt="HAL - Hindustan Aeronautics Limited" class="internship-logo-img" loading="lazy">
+                        </div>
                     </div>
                     <div class="internship-right">
                         <div class="internship-content">
@@ -260,7 +264,9 @@
                 <div class="internship-card">
                     <div class="internship-left"></div>
                     <div class="internship-icon-wrapper">
-                        <div class="internship-icon">🚀</div>
+                        <div class="internship-icon internship-icon-logo">
+                            <img src="https://i.ibb.co/kgg4b0wd/6fcaa6-d2039458a5af486e81d224db7f64f264-mv2.png" alt="Startup Haven" class="internship-logo-img" loading="lazy">
+                        </div>
                     </div>
                     <div class="internship-right">
                         <div class="internship-content">
@@ -358,11 +364,11 @@
                     </div>
 
                     <div class="resume-actions">
-                        <a href="Resume 2026.pdf" class="resume-btn primary-btn" target="_blank">
+                        <a href="Resume 2026.pdf" class="resume-btn primary-btn" target="_blank" rel="noopener noreferrer">
                             <span class="btn-icon">👁️</span>
                             <span>View Resume</span>
                         </a>
-                        <a href="Resume 2026.pdf" class="resume-btn secondary-btn" download="Shashank_Resume.pdf">
+                        <a href="Resume 2026.pdf" class="resume-btn secondary-btn" download="Shashank_Resume.pdf" rel="noopener noreferrer">
                             <span class="btn-icon">⬇️</span>
                             <span>Download PDF</span>
                         </a>
@@ -387,6 +393,7 @@
                     <div class="form-group">
                         <textarea rows="5" name="message" placeholder="Your Message" required></textarea>
                     </div>
+                    <p class="form-feedback" id="formFeedback" role="status" aria-live="polite" style="display: none;"></p>
                     <button type="submit" class="btn btn-primary" id="submitBtn">
                         <span id="btnText">Send Message</span>
                         <span id="btnLoader" style="display: none;">Sending...</span>
