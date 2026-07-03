@@ -92,7 +92,6 @@ export const experience: {
     company: "Startup Haven",
     role: "Software Engineer Intern",
     period: "Jan 2026 — Jun 2026",
-    current: true,
     location: "Bangalore, India",
     description:
       "Developing a full-stack comparison platform for quick-commerce and e-commerce apps to compare prices, offers, and delivery options across vendors.",

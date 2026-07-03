@@ -7,6 +7,7 @@ import {
   SkillBrandIcon,
 } from "@/components/ui/SkillIcons";
 import { skillCategories } from "@/lib/data";
+import { SkillMarquee } from "@/components/sections/SkillMarquee";
 
 function SkillTile({ name, index }: { name: string; index: number }) {
   return (
@@ -58,6 +59,8 @@ export function Skills() {
           ))}
         </div>
       </div>
+
+      <SkillMarquee />
     </section>
   );
 }

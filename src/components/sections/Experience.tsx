@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Briefcase, ImageIcon, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import { CertificateModal } from "@/components/ui/CertificateModal";
 import { SectionHeader, FadeIn } from "@/components/ui/SectionHeader";
 import { experience } from "@/lib/data";
@@ -33,12 +33,12 @@ function CompanyLogo({
 
   if (logoUrl) {
     return (
-      <div className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border/80 bg-white p-2 shadow-[0_4px_16px_rgba(0,0,0,0.25)] transition-colors duration-300 group-hover:border-accent/30">
+      <div className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border/80 bg-white p-1.5">
         <Image
           src={logoUrl}
           alt={`${company} logo`}
-          width={40}
-          height={40}
+          width={32}
+          height={32}
           className="h-full w-full object-contain"
         />
       </div>
@@ -46,144 +46,109 @@ function CompanyLogo({
   }
 
   return (
-    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-accent/25 bg-accent/10 text-xs font-bold text-accent-light transition-colors duration-300 group-hover:border-accent/40 group-hover:bg-accent/15">
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-accent/25 bg-accent/10 text-[10px] font-bold text-accent-light">
       {initials}
     </div>
   );
 }
 
-function ExperienceCard({
+function ExperienceRow({
   job,
   index,
-  isLast,
   onViewCertificate,
 }: {
   job: ExperienceEntry;
   index: number;
-  isLast: boolean;
   onViewCertificate: (job: ExperienceEntry) => void;
 }) {
-  const num = String(index + 1).padStart(2, "0");
+  const hasCertificate = getCertificateImages(job).length > 0;
 
   return (
-    <FadeIn delay={index * 0.1}>
-      <div className="relative flex gap-6 sm:gap-10">
-        <div className="relative flex shrink-0 flex-col items-center">
-          <div
-            className={cn(
-              "relative z-10 flex h-10 w-10 items-center justify-center rounded-full border-2 border-background font-display text-sm font-medium tabular-nums text-accent-light sm:h-11 sm:w-11",
-              job.current
-                ? "accent-gradient text-background shadow-[0_0_24px_var(--accent-glow)]"
-                : "bg-card ring-1 ring-accent/30"
-            )}
-          >
-            {num}
-          </div>
-          {!isLast && (
-            <div
-              className="absolute top-10 bottom-0 w-px bg-gradient-to-b from-accent/35 via-accent/15 to-transparent sm:top-11"
-              aria-hidden
-            />
-          )}
-        </div>
+    <FadeIn delay={index * 0.06}>
+      <motion.article
+        whileHover={{ x: 2 }}
+        transition={{ duration: 0.15 }}
+        className={cn(
+          "group relative overflow-hidden rounded-xl border border-border/60 bg-card/40 p-4 transition-colors sm:p-5",
+          "hover:border-border-hover hover:bg-card-hover",
+          "border-accent/20 ring-1 ring-inset ring-accent/10"
+        )}
+      >
+        <div className="absolute inset-y-0 left-0 w-0.5 accent-gradient" />
 
-        <motion.article
-          whileHover={{ y: -3 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-          className={cn(
-            "group relative mb-10 min-w-0 flex-1 overflow-hidden rounded-2xl border bg-card shadow-[0_8px_32px_rgba(0,0,0,0.2)] transition-all duration-300 hover:border-accent/25 hover:bg-card-hover hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)]",
-            job.current ? "border-accent/30" : "border-border"
-          )}
-        >
-          {job.current && (
-            <div className="absolute inset-x-0 top-0 h-px accent-gradient opacity-80" />
-          )}
+        <div className="flex gap-3.5 sm:gap-4">
+          <CompanyLogo company={job.company} logoUrl={job.logoUrl} />
 
-          <div className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-accent/5 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
-
-          <div className="relative p-6 sm:p-8">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-              <div className="flex gap-4">
-                <CompanyLogo company={job.company} logoUrl={job.logoUrl} />
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2.5">
-                    <h3 className="font-display text-xl font-medium text-foreground sm:text-2xl">
-                      {job.role}
-                    </h3>
-                    {job.current && (
-                      <span className="rounded-full accent-gradient px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-background">
-                        Current
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-1 text-sm font-medium text-accent-light sm:text-base">
-                    {job.company}
-                  </p>
-                  {job.location && (
-                    <p className="mt-2 flex items-center gap-1.5 text-xs text-muted">
-                      <MapPin size={12} className="shrink-0 text-accent/70" />
-                      {job.location}
-                    </p>
-                  )}
-                </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-1">
+              <div className="min-w-0">
+                <h3 className="text-sm font-medium text-foreground sm:text-[15px]">
+                  {job.role}
+                </h3>
+                <p className="mt-0.5 text-sm text-accent-light/90">
+                  {job.company}
+                </p>
               </div>
-
-              <span className="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-full border border-accent/20 bg-background/80 px-3.5 py-1.5 text-xs tabular-nums text-foreground/80">
-                <Briefcase size={12} className="text-accent-light" strokeWidth={1.5} />
+              <span className="shrink-0 text-[11px] tabular-nums text-muted">
                 {job.period}
               </span>
             </div>
 
-            <p className="mt-6 text-sm leading-relaxed text-muted sm:text-[15px]">
+            {job.location && (
+              <p className="mt-1 flex items-center gap-1 text-[11px] text-muted">
+                <MapPin size={11} className="shrink-0" />
+                {job.location}
+              </p>
+            )}
+
+            <p className="mt-3 text-sm leading-relaxed text-muted">
               {job.description}
             </p>
 
             {job.highlights.length > 0 && (
-              <ul className="mt-6 space-y-3 border-t border-border/50 pt-6">
+              <ul className="mt-3 space-y-1.5">
                 {job.highlights.map((highlight) => (
                   <li
                     key={highlight}
-                    className="flex gap-3 text-sm leading-relaxed text-foreground/75"
+                    className="flex gap-2 text-xs leading-relaxed text-foreground/55"
                   >
-                    <span className="mt-2 h-px w-3 shrink-0 bg-accent-light" />
+                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent/70" />
                     {highlight}
                   </li>
                 ))}
               </ul>
             )}
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              {job.tech && job.tech.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {job.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-foreground/70 transition-colors duration-300 group-hover:border-accent/20"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              )}
+            <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-border/40 pt-3">
+              {job.tech?.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-border/60 bg-background/50 px-2 py-0.5 text-[10px] text-muted"
+                >
+                  {t}
+                </span>
+              ))}
 
-              {getCertificateImages(job).length > 0 && (
+              {hasCertificate && (
                 <button
                   type="button"
                   onClick={() => onViewCertificate(job)}
                   className={cn(
-                    "inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/5 px-4 py-2 text-xs font-medium text-accent-light transition-all duration-300",
-                    "hover:border-accent/45 hover:bg-accent/10 hover:text-accent",
+                    "inline-flex items-center gap-1 text-[11px] font-medium text-accent-light/80 transition-colors hover:text-accent",
                     job.tech?.length ? "sm:ml-auto" : ""
                   )}
                 >
-                  <ImageIcon size={14} strokeWidth={1.5} />
                   View certificate
+                  <ArrowUpRight
+                    size={12}
+                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
                 </button>
               )}
             </div>
           </div>
-        </motion.article>
-      </div>
+        </div>
+      </motion.article>
     </FadeIn>
   );
 }
@@ -197,19 +162,18 @@ export function Experience() {
       <div className="absolute inset-0 grid-bg opacity-20" />
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-[360px] w-[480px] -translate-x-1/2 rounded-full bg-accent/5 blur-[120px]" />
 
-      <div className="relative mx-auto max-w-3xl px-6 lg:max-w-4xl">
+      <div className="relative mx-auto max-w-5xl px-6">
         <SectionHeader
           label="Experience"
           title={"Where I've built\nand grown"}
         />
 
-        <div className="relative mt-16 sm:mt-20">
+        <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-3">
           {experience.map((job, i) => (
-            <ExperienceCard
+            <ExperienceRow
               key={`${job.company}-${job.period}`}
               job={job}
               index={i}
-              isLast={i === experience.length - 1}
               onViewCertificate={setActiveCertificate}
             />
           ))}

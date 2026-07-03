@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { resumeInfo, siteConfig } from "@/lib/data";
 
 export function Resume() {
-  const { education, includes, skillGroups } = resumeInfo;
+  const { education, includes } = resumeInfo;
 
   return (
     <section id="resume" className="relative overflow-hidden py-24 sm:py-32">
@@ -25,68 +25,32 @@ export function Resume() {
         <FadeIn className="mt-16">
           <div className="overflow-hidden rounded-2xl border border-border bg-card">
             <div className="grid lg:grid-cols-5">
-              {/* Resume preview mockup */}
+              {/* Resume PDF preview */}
               <div className="relative border-b border-border bg-[#111] p-6 sm:p-8 lg:col-span-3 lg:border-b-0 lg:border-r">
-                <div className="mb-4 flex items-center gap-2">
-                  <FileText size={14} className="text-accent-light" />
-                  <span className="text-xs font-medium uppercase tracking-widest text-muted">
-                    Preview
-                  </span>
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <FileText size={14} className="text-accent-light" />
+                    <span className="text-xs font-medium uppercase tracking-widest text-muted">
+                      Preview
+                    </span>
+                  </div>
+                  <a
+                    href={siteConfig.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-muted transition-colors hover:text-accent-light"
+                  >
+                    Open in new tab
+                  </a>
                 </div>
 
-                <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#fafafa] p-6 text-[#1a1a1a] shadow-2xl sm:p-8">
-                  <div className="absolute left-0 top-0 h-1 w-full accent-gradient" />
-
-                  <div className="border-b border-[#e5e5e5] pb-4">
-                    <h3 className="font-display text-2xl font-medium tracking-tight">
-                      {siteConfig.name.toUpperCase()}
-                    </h3>
-                    <p className="mt-1 text-sm text-[#555]">
-                      {siteConfig.title} · {education.degree}
-                    </p>
-                    <p className="mt-2 text-xs text-[#777]">
-                      {siteConfig.location} · {siteConfig.email}
-                    </p>
-                  </div>
-
-                  <div className="mt-5 space-y-4 text-xs leading-relaxed text-[#444]">
-                    <div>
-                      <p className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-[#999]">
-                        Education
-                      </p>
-                      <p className="font-medium text-[#222]">{education.school}</p>
-                      <p>{education.degree} · {education.period}</p>
-                      <p className="mt-0.5 text-[#666]">
-                        CGPA: {education.cgpa} · {education.location}
-                      </p>
-                    </div>
-
-                    <div>
-                      <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-[#999]">
-                        Technical Skills
-                      </p>
-                      <div className="space-y-1">
-                        {skillGroups.map((group) => (
-                          <p key={group.label}>
-                            <span className="font-medium text-[#333]">
-                              {group.label}:
-                            </span>{" "}
-                            {group.items}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <p className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-[#999]">
-                        Coursework
-                      </p>
-                      <p>{education.coursework.join(" · ")}</p>
-                    </div>
-                  </div>
-
-                  {/* Page fold shadow */}
-                  <div className="pointer-events-none absolute -bottom-6 -right-6 h-24 w-24 bg-gradient-to-tl from-black/10 to-transparent" />
+                <div className="overflow-hidden rounded-xl border border-white/10 bg-white shadow-2xl">
+                  <div className="h-1 w-full accent-gradient" />
+                  <iframe
+                    src={`${siteConfig.resumeUrl}#toolbar=0&navpanes=0`}
+                    title={`${siteConfig.name} resume preview`}
+                    className="h-[min(85vh,960px)] w-full bg-white"
+                  />
                 </div>
               </div>
 
