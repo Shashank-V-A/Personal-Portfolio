@@ -9,60 +9,11 @@ import {
   Trophy,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { GitHubContributions } from "@/components/ui/GitHubContributions";
 import { SectionHeader, FadeIn } from "@/components/ui/SectionHeader";
 import { aboutContent, resumeInfo, stats, siteConfig } from "@/lib/data";
 
 const statIcons = [Trophy, Briefcase];
-
-function CodeEditorMockup() {
-  return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl glow-accent">
-      <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-        <span className="h-3 w-3 rounded-full bg-[#FF5F56]" />
-        <span className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
-        <span className="h-3 w-3 rounded-full bg-[#27C93F]" />
-        <span className="ml-3 text-xs text-muted">portfolio.tsx</span>
-      </div>
-      <pre className="overflow-x-auto p-6 text-left text-sm leading-relaxed">
-        <code>
-          <span className="text-purple-400">const</span>{" "}
-          <span className="text-blue-300">developer</span>{" "}
-          <span className="text-foreground">=</span> {"{"}
-          {"\n"}
-          {"  "}
-          <span className="text-green-300">name</span>:{" "}
-          <span className="text-orange-300">
-            &quot;{siteConfig.name}&quot;
-          </span>
-          ,{"\n"}
-          {"  "}
-          <span className="text-green-300">role</span>:{" "}
-          <span className="text-orange-300">
-            &quot;{siteConfig.title}&quot;
-          </span>
-          ,{"\n"}
-          {"  "}
-          <span className="text-green-300">location</span>:{" "}
-          <span className="text-orange-300">
-            &quot;{siteConfig.location}&quot;
-          </span>
-          ,{"\n"}
-          {"  "}
-          <span className="text-green-300">passion</span>:{" "}
-          <span className="text-orange-300">
-            &quot;{aboutContent.passion}&quot;
-          </span>
-          ,{"\n"}
-          {"  "}
-          <span className="text-green-300">available</span>:{" "}
-          <span className="text-orange-300">True</span>
-          {"\n"}
-          {"}"};
-        </code>
-      </pre>
-    </div>
-  );
-}
 
 export function About() {
   return (
@@ -193,9 +144,9 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="relative mt-12 w-full max-w-3xl animate-float"
+              className="relative mt-12 w-full max-w-4xl"
             >
-              <CodeEditorMockup />
+              <GitHubContributions />
             </motion.div>
           </div>
         </FadeIn>

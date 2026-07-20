@@ -7,10 +7,12 @@ import { Projects } from "@/components/sections/Projects";
 import { ExtraMile } from "@/components/sections/ExtraMile";
 import { Resume } from "@/components/sections/Resume";
 import { Contact } from "@/components/sections/Contact";
+import { IntroScreen } from "@/components/ui/IntroScreen";
 
 export default function Home() {
   return (
     <>
+      <IntroScreen />
       <Navbar />
       <main>
         <About />
