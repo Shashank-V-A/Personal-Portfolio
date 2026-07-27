@@ -40,8 +40,21 @@ function ProjectLinks({
 }) {
   const hasLive = isValidLink(project.link);
   const hasGithub = isValidLink(project.github);
+  const secondaryLink =
+    "secondaryLink" in project && typeof project.secondaryLink === "string"
+      ? project.secondaryLink
+      : undefined;
+  const hasSecondary = secondaryLink ? isValidLink(secondaryLink) : false;
+  const liveLabel =
+    "liveLabel" in project && typeof project.liveLabel === "string"
+      ? project.liveLabel
+      : "Live demo";
+  const secondaryLabel =
+    "secondaryLabel" in project && typeof project.secondaryLabel === "string"
+      ? project.secondaryLabel
+      : "Open";
 
-  if (!hasLive && !hasGithub) return null;
+  if (!hasLive && !hasSecondary && !hasGithub) return null;
 
   return (
     <div className={cn("flex flex-wrap gap-2", className)}>
@@ -52,7 +65,18 @@ function ProjectLinks({
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 rounded-full accent-gradient px-4 py-2 text-xs font-medium text-background transition-opacity hover:opacity-90"
         >
-          Live demo
+          {liveLabel}
+          <ArrowUpRight size={14} />
+        </a>
+      )}
+      {hasSecondary && secondaryLink && (
+        <a
+          href={secondaryLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-4 py-2 text-xs font-medium text-foreground transition-colors hover:border-border-hover"
+        >
+          {secondaryLabel}
           <ArrowUpRight size={14} />
         </a>
       )}

@@ -129,6 +129,33 @@ export const experience: {
 
 export const projects = [
   {
+    title: "EventX",
+    description:
+      "A pair of Bangalore-focused Telegram alert bots — HackathonX for hackathons/buildathons/ideathons and SportX for sports events — that scrape public platforms and notify subscribers when something new is listed. Currently serving 40+ active users.",
+    tags: ["Python", "FastAPI", "Telegram", "Vercel"],
+    link: "https://t.me/EventXva05Bot",
+    liveLabel: "HackathonX",
+    secondaryLink: "https://t.me/Sportx_va_bot",
+    secondaryLabel: "SportX",
+    github: "https://github.com/Shashank-V-A/EventX",
+    category: "Web2",
+    year: "2026",
+    accent: "#2AABEE",
+    image: "/projects/eventx.png",
+  },
+  {
+    title: "Veritas AI",
+    description:
+      "An AI-powered digital investigation platform for claims, sources, and narratives — paste any article, forward, or transcript and get a structured credibility dossier with trust scores, claim breakdowns, and evidence context.",
+    tags: ["React", "TypeScript", "Express", "Neo4j"],
+    link: "https://veritas-ai-shashank.vercel.app",
+    github: "https://github.com/Shashank-V-A/Veritas-AI",
+    category: "Web2",
+    year: "2026",
+    accent: "#fbbf24",
+    image: "/projects/veritas-ai.png",
+  },
+  {
     title: "Lockin-AI",
     description:
       "A full-stack interview prep platform — one place to upload a resume, run company-specific mock interviews, practice coding problems, track progress, and get coaching from an AI assistant. Everything is tied together with a readiness score so you always know what to work on next.",
