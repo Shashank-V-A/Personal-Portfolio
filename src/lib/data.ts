@@ -36,6 +36,7 @@ export const stats = [
 export const aboutContent = {
   headline: "Building products that people love to use",
   traits: ["Problem solver", "Team player", "Fast learner", "Detail oriented"],
+  brightWordsUrl: "https://brightwords.in",
   bio: [
     "I am an enthusiastic learner and aspiring software engineer with a strong passion for building modern web applications. I focus on creating seamless user experiences and developing reliable, efficient backend systems.",
     "I am also the Co-Founder of BrightWords, an AI-powered assistive learning platform designed to support children with special needs. Through BrightWords, I strive to leverage technology to promote accessibility, inclusivity, and enriched learning experiences for every child.",

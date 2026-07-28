@@ -13,14 +13,14 @@ function SkillTile({ name, index }: { name: string; index: number }) {
   return (
     <FadeIn delay={index * 0.03}>
       <motion.article
-        whileHover={{ y: -6, scale: 1.02 }}
+        whileHover={{ y: -3, scale: 1.02 }}
         transition={{ duration: 0.2 }}
-        className="group flex aspect-square flex-col items-center justify-center gap-3 rounded-xl border border-border/80 bg-[#161616] p-4 shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-colors hover:border-accent/40 hover:bg-[#1a1a1a] sm:gap-4 sm:p-5"
+        className="group flex flex-col items-center justify-center gap-2 rounded-lg border border-border/80 bg-[#161616] px-2 py-3 shadow-[0_6px_16px_rgba(0,0,0,0.3)] transition-colors hover:border-accent/40 hover:bg-[#1a1a1a] sm:gap-2.5 sm:px-3 sm:py-3.5"
       >
-        <div className="flex h-12 w-12 items-center justify-center transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14">
-          <SkillBrandIcon name={name} size={44} />
+        <div className="flex h-7 w-7 items-center justify-center transition-transform duration-300 group-hover:scale-110 sm:h-8 sm:w-8">
+          <SkillBrandIcon name={name} size={28} />
         </div>
-        <p className="text-center text-[10px] font-semibold uppercase tracking-wider text-foreground/90 sm:text-[11px]">
+        <p className="text-center text-[9px] font-semibold uppercase tracking-wider text-foreground/90 sm:text-[10px]">
           {formatSkillLabel(name)}
         </p>
       </motion.article>
@@ -40,17 +40,19 @@ export function Skills() {
           title="What I work with"
         />
 
-        <div className="mt-14 space-y-14 sm:mt-16 sm:space-y-16">
+        <div className="mt-10 space-y-8 sm:mt-12 sm:space-y-10">
           {skillCategories.map((category) => (
             <div key={category.id} id={`skills-${category.id}`}>
-              <div className="mb-5 border-b border-border/60 pb-3">
-                <h3 className="font-display text-xl font-medium text-accent-light sm:text-2xl">
+              <div className="mb-3 border-b border-border/60 pb-2">
+                <h3 className="font-display text-lg font-medium text-accent-light sm:text-xl">
                   {category.label}
                 </h3>
-                <p className="mt-1 text-sm text-muted">{category.description}</p>
+                <p className="mt-0.5 text-xs text-muted sm:text-sm">
+                  {category.description}
+                </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5">
+              <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-2.5 lg:grid-cols-6 lg:gap-3">
                 {category.items.map((name, i) => (
                   <SkillTile key={name} name={name} index={i} />
                 ))}

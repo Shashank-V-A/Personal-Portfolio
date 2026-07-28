@@ -88,9 +88,32 @@ export function About() {
               </h3>
 
               <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted sm:text-[15px]">
-                {aboutContent.bio.map((paragraph) => (
-                  <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-                ))}
+                {aboutContent.bio.map((paragraph) => {
+                  if (!paragraph.includes("BrightWords")) {
+                    return <p key={paragraph.slice(0, 32)}>{paragraph}</p>;
+                  }
+
+                  const parts = paragraph.split("BrightWords");
+                  return (
+                    <p key={paragraph.slice(0, 32)}>
+                      {parts.map((part, i) => (
+                        <span key={`${part.slice(0, 12)}-${i}`}>
+                          {part}
+                          {i < parts.length - 1 && (
+                            <a
+                              href={aboutContent.brightWordsUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-medium text-accent-light underline decoration-accent/40 underline-offset-2 transition-colors hover:text-accent hover:decoration-accent"
+                            >
+                              BrightWords
+                            </a>
+                          )}
+                        </span>
+                      ))}
+                    </p>
+                  );
+                })}
               </div>
 
               <div className="mt-6 flex flex-wrap gap-2 border-t border-border/60 pt-6">
