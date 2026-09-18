@@ -215,7 +215,7 @@ export const resumeInfo = {
     degree: "B.E. in CSE – Data Science",
     location: "Bangalore, India",
     period: "Expected May 2027",
-    cgpa: "8.95 / 10.0",
+    cgpa: "8.65 / 10.0",
     coursework: [
       "Data Structures",
       "Algorithms",
