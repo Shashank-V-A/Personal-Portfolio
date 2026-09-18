@@ -14,7 +14,7 @@ export const siteConfig = {
     twitter: "https://x.com/Shashank_VA05",
     instagram: "https://www.instagram.com/shashank.va05",
   },
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/Resume_Full%20Stack.pdf",
   profileImage: "/images/profile.png",
 };
 
