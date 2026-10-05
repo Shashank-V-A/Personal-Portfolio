@@ -193,18 +193,6 @@ export const projects = [
     image: "/projects/rankmint.png",
   },
   {
-    title: "VaultIQ",
-    description:
-      "Crypto expense tracker with manual trade logging, live price sync (CoinGecko/CoinDCX), and FIFO-based portfolio tracking with Indian tax logic.",
-    tags: ["React", "Node.js", "Express", "PostgreSQL"],
-    link: "https://vault-iq-phi.vercel.app",
-    github: "https://github.com/Shashank-V-A/VaultIQ",
-    category: "Web2",
-    year: "2025",
-    accent: "#60a5fa",
-    image: "/projects/vaultiq.png",
-  },
-  {
     title: "Prize Vault",
     description:
       "Prize Vault is a blockchain-native prize escrow platform built for hackathons and events on Stellar. It keeps prize funds locked on-chain until both the sponsor and organizer approve the payout, preventing misuse, delays, or unilateral fund movement. The platform includes role-based dashboards for sponsors, organizers, and participants, making prize distribution more transparent, auditable, and trustworthy.",
