@@ -157,18 +157,6 @@ export const projects = [
     image: "/projects/veritas-ai.png",
   },
   {
-    title: "Lockin-AI",
-    description:
-      "A full-stack interview prep platform — one place to upload a resume, run company-specific mock interviews, practice coding problems, track progress, and get coaching from an AI assistant. Everything is tied together with a readiness score so you always know what to work on next.",
-    tags: ["Next.js", "TypeScript", "Prisma", "Groq"],
-    link: "https://lockin-ai-va.vercel.app",
-    github: "https://github.com/Shashank-V-A/Lockin-AI",
-    category: "Web2",
-    year: "2026",
-    accent: "#2d6a4f",
-    image: "/projects/lockin-ai.png",
-  },
-  {
     title: "Namma Trust",
     description:
       "AI-driven event congestion forecasting and resource recommendation for Bangalore City Traffic Police — built for the Flipkart Grid Hackathon Event-Driven Congestion problem statement.",
