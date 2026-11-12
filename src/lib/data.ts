@@ -111,7 +111,7 @@ export const experience: {
     company: "Paytm (Pi Commerce)",
     role: "Onboarding Intern",
     period: "Nov 2026 — Present",
-    location: "India",
+    location: "Bengaluru, India",
     description:
       "Onboarding SME advertisers on Paytm Pi Commerce and launching Meta Ads campaigns end to end across Instagram, Facebook, and WhatsApp Business.",
     highlights: [
@@ -122,6 +122,7 @@ export const experience: {
     logoUrl: "/logos/paytm.png",
     tech: ["Meta Ads", "Digital Advertising", "Client Onboarding"],
     current: true,
+    certificateImage: "/certificates/paytm-internship.png",
   },
   {
     company: "Startup Haven",
