@@ -14,7 +14,8 @@ export const siteConfig = {
     twitter: "https://x.com/Shashank_VA05",
     instagram: "https://www.instagram.com/shashank.va05",
   },
-  resumeUrl: "/resume.pdf",
+  // Cache-bust when public/resume.pdf is replaced so preview/download pick up the new file.
+  resumeUrl: "/resume.pdf?v=20261112",
   profileImage: "/images/profile.png",
 };
 
@@ -30,7 +31,7 @@ export const navLinks = [
 
 export const stats = [
   { value: "5×", label: "hackathon podiums" },
-  { value: "2", label: "internships completed" },
+  { value: "3", label: "internships" },
 ];
 
 export const aboutContent = {
@@ -49,28 +50,45 @@ export const aboutContent = {
 
 export const skillCategories = [
   {
+    id: "languages",
+    label: "Languages",
+    description: "Languages I write in day to day.",
+    items: ["Python", "JavaScript", "TypeScript", "SQL"],
+  },
+  {
     id: "frontend",
     label: "Frontend",
     description: "Interfaces I ship with regularly.",
-    items: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js"],
+    items: ["HTML", "CSS", "React", "Next.js", "Tailwind CSS"],
   },
   {
     id: "backend",
-    label: "API & Backend",
+    label: "Backend",
     description: "Server-side work from APIs to data layers.",
-    items: ["Node.js", "Express.js", "Django", "REST APIs"],
+    items: ["Node.js", "Express.js", "FastAPI", "REST APIs"],
   },
   {
     id: "databases",
     label: "Databases",
-    description: "Storage I have used in projects and internships.",
-    items: ["PostgreSQL", "SQLite", "MySQL", "MongoDB"],
+    description: "Storage and data layers from projects and internships.",
+    items: ["PostgreSQL", "SQLite", "Neo4j", "Supabase", "Prisma"],
   },
   {
     id: "cloud",
-    label: "Cloud",
-    description: "Deployment, auth, and analytics from my stack.",
-    items: ["Supabase", "Vercel", "Git", "GitHub", "OAuth", "Tableau", "Power BI"],
+    label: "Cloud & Tools",
+    description: "Cloud, CI/CD, analytics, and shipping tooling.",
+    items: [
+      "AWS",
+      "Google Cloud",
+      "Vercel",
+      "Git",
+      "GitHub Actions",
+      "CI/CD",
+      "Web Scraping",
+      "Tableau",
+      "Power BI",
+      "Stellar",
+    ],
   },
 ] as const;
 
@@ -90,19 +108,35 @@ export const experience: {
   certificateImages?: string[];
 }[] = [
   {
+    company: "Paytm (Pi Commerce)",
+    role: "Onboarding Intern",
+    period: "Nov 2026 — Present",
+    location: "India",
+    description:
+      "Onboarding SME advertisers on Paytm Pi Commerce and launching Meta Ads campaigns end to end across Instagram, Facebook, and WhatsApp Business.",
+    highlights: [
+      "Onboarded small and medium enterprise advertisers on Paytm Pi Commerce",
+      "Launched Meta Ads campaigns end to end for live digital advertising",
+      "Configured and activated client campaigns across Instagram, Facebook, and WhatsApp Business",
+    ],
+    logoUrl: "/logos/paytm.png",
+    tech: ["Meta Ads", "Digital Advertising", "Client Onboarding"],
+    current: true,
+  },
+  {
     company: "Startup Haven",
     role: "Software Engineer Intern",
     period: "Jan 2026 — Jun 2026",
     location: "Bangalore, India",
     description:
-      "Developing a full-stack comparison platform for quick-commerce and e-commerce apps to compare prices, offers, and delivery options across vendors.",
+      "Developed a full-stack web application to compare prices, offers, and delivery options across quick-commerce and e-commerce vendors.",
     highlights: [
-      "Built scalable web scraping pipelines to ingest and normalize multi-source product and pricing data",
+      "Built Python web scraping pipelines to ingest and normalize multi-source product and pricing data",
       "Designed responsive interfaces that present standardized comparison results for end users",
-      "Improved decision-making workflows with reliable downstream price and offer comparisons",
+      "Improved purchase decisions with reliable downstream price and offer comparisons",
     ],
     logoUrl: "/logos/startup-haven.png",
-    tech: ["React", "Node.js", "Web Scraping", "REST APIs"],
+    tech: ["React", "Node.js", "Python", "Web Scraping"],
     certificateImages: [
       "/certificates/startup-haven-offer-1.png",
       "/certificates/startup-haven-offer-2.png",
@@ -110,15 +144,15 @@ export const experience: {
   },
   {
     company: "HAL – RWR&DC, AFCS Group",
-    role: "Intern",
+    role: "Engineering Intern",
     period: "Jul 2025 — Aug 2025",
     location: "Bangalore, India",
     description:
-      "Supported automation initiatives for flight data record workflows and assisted in preparation of flight test reports for the AFCS Group.",
+      "Supported automation of flight data record workflows and prepared validated flight test reports for the AFCS Group.",
     highlights: [
       "Reduced manual processing steps in flight data reporting pipelines",
-      "Validated flight test reports using structured documentation templates",
-      "Organized datasets and improved consistency of technical reports for stakeholders",
+      "Prepared and validated flight test reports using structured documentation",
+      "Organized technical datasets for AFCS stakeholders",
     ],
     logoUrl: "/logos/hal.png",
     tech: ["Automation", "Documentation", "Data Validation"],
@@ -218,10 +252,13 @@ export const resumeInfo = {
     "Hackathon achievements",
   ],
   skillGroups: [
-    { label: "Frontend", items: "HTML · CSS · JavaScript · TypeScript · React · Next.js" },
-    { label: "Backend", items: "Node.js · Express.js · Django · REST APIs" },
-    { label: "Data", items: "PostgreSQL · SQLite · MySQL · MongoDB" },
-    { label: "Tools", items: "Supabase · Vercel · Git · Tableau · Power BI" },
+    { label: "Languages", items: "Python · JavaScript · TypeScript · SQL" },
+    { label: "Frontend", items: "HTML · CSS · React · Next.js · Tailwind CSS" },
+    { label: "Backend", items: "Node.js · Express.js · FastAPI · REST APIs" },
+    {
+      label: "Data & Tools",
+      items: "PostgreSQL · Neo4j · Supabase · Prisma · AWS · Vercel · GitHub Actions",
+    },
   ],
 };
 

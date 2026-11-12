@@ -4,38 +4,46 @@ import { useState } from "react";
 
 /** Official brand icons via Devicon & Simple Icons CDN */
 const skillIconUrls: Record<string, string> = {
-  HTML: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-  CSS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  Python:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
   JavaScript:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
   TypeScript:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  SQL: "https://cdn.simpleicons.org/sqlite/003B57",
+  HTML: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  CSS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
   React:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
   "Next.js": "https://cdn.simpleicons.org/nextdotjs/ffffff",
+  "Tailwind CSS": "https://cdn.simpleicons.org/tailwindcss/38BDF8",
   "Node.js":
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
   "Express.js":
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
-  Django:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+  FastAPI: "https://cdn.simpleicons.org/fastapi/009688",
   "REST APIs": "https://cdn.simpleicons.org/swagger/85EA2D",
   PostgreSQL:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
   SQLite:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg",
-  MySQL:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-  MongoDB:
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  Neo4j:
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/neo4j/neo4j-original.svg",
   Supabase: "https://cdn.simpleicons.org/supabase/3FCF8E",
+  Prisma: "https://cdn.simpleicons.org/prisma/ffffff",
+  AWS: "https://cdn.simpleicons.org/amazonaws/FF9900",
+  "Google Cloud":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg",
   Vercel:
     "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
   Git: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-  GitHub: "https://cdn.simpleicons.org/github/ffffff",
-  OAuth: "https://cdn.simpleicons.org/openid/FF6F00",
+  "GitHub Actions": "https://cdn.simpleicons.org/githubactions/2088FF",
+  "CI/CD": "https://cdn.simpleicons.org/githubactions/2088FF",
+  "Web Scraping":
+    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
   Tableau: "/skills/tableau.png",
   "Power BI": "/skills/powerbi.png",
+  Stellar: "https://cdn.simpleicons.org/stellar/7D00FF",
 };
 
 export function formatSkillLabel(name: string) {
